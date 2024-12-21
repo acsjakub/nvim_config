@@ -34,4 +34,5 @@ vim.api.nvim_set_keymap("n", "<Leader>n", "<C-i>", opts)
 -- run ripgrep in the "current directory" (wait for input silently)
 vim.api.nvim_set_keymap("n", "<Leader>rg", ":term rg ", opts)
 
+vim.api.nvim_set_keymap("t", "<esc><esc>", "<c-\\><c-n>", opts)
 vim.api.nvim_set_keymap("n", "<Leader>t", ":AcsjakubTerminal<CR>", opts)
