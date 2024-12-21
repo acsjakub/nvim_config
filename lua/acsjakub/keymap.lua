@@ -1,5 +1,9 @@
 local opts = { noremap = true, silent = true }
 
+-- don't forget to work on the strong basics:
+-- https://devhints.io/vim
+-- https://vim.rtorr.com/
+
 -- set SPACE as global modifier prefix
 -- It is referenced in mappings as <Leader>
 vim.g.mapleader = " "
