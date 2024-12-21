@@ -30,3 +30,6 @@ set_window_commands()
 vim.api.nvim_set_keymap("n", "<Leader>e", ":Lex 20<CR>", opts)
 vim.api.nvim_set_keymap("n", "<Leader>p", "<C-o>", opts)
 vim.api.nvim_set_keymap("n", "<Leader>n", "<C-i>", opts)
+
+-- run ripgrep in the "current directory" (wait for input silently)
+vim.api.nvim_set_keymap("n", "<Leader>rg", ":term rg ", opts)
