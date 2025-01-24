@@ -30,6 +30,7 @@ end
 
 lspconfig.rust_analyzer.setup({})
 lspconfig.clangd.setup({})
+lspconfig.pylsp.setup({})
 
 vim.api.nvim_create_user_command(
 	"AcsjakubLSPSearchWorkspace",
