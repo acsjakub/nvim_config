@@ -15,8 +15,8 @@ vim.g.mapleader = " "
 function set_window_commands()
 	local window_mod = "<Leader>w"
 	keymaps = {
-		["v"] = ":vnew<CR>",
-		["b"] = ":new<CR>",
+		["v"] = ":vsplit<CR>",
+		["b"] = ":split<CR>",
 		["d"] = "<C-w>q",
 		["h"] = "<C-w>h",
 		["j"] = "<C-w>j",
