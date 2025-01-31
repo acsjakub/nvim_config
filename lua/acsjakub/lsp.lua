@@ -26,6 +26,14 @@ function lsp_keymap(info)
 		opts
 	)
 
+	vim.api.nvim_buf_set_keymap(
+		info.buf,
+		"i",
+		"<Tab>",
+		"<C-X><C-O>", -- this triggers omnifunc completion in VIM - I should maybe learn more about that
+		opts
+	)
+
 end
 
 lspconfig.rust_analyzer.setup({})
