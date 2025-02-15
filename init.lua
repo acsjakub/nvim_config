@@ -3,4 +3,4 @@ require "acsjakub.lsp"
 require "acsjakub.keymap"
 require "acsjakub.custom"
 
-vim.api.nvim_command("colorscheme habamax")
+vim.api.nvim_command("colorscheme nightlights")
