@@ -43,6 +43,8 @@ M.load = function()
 
 	highlightings = {
 		Normal			= {fg=foreground,	bg=background},
+		NormalFloat		= {fg=foreground,	bg=background},
+		FloatBorder		= {fg=foreground,	bg=background},
 		ColorColumn 	= {fg=None, 		bg=line},
 		Conceal 		= {fg=orange, 		bg=None},
 		Cursor			= {fg=background,	bg=foreground},
