@@ -95,10 +95,12 @@ local function acsjakub_rg(args)
 	qflines = rg_out_to_qflines(hnd.stdout)
 
 	-- need to open qf window (setqflist does create new if it doesn't exist,
-	-- but that doesn't mean that window get's opened
+	-- but that doesn't mean that window gets opened)
 	vim.cmd.copen()
 
-	qfoptions = {quickfixtextfunc=qf_modifier, items=qflines}
+	title = "Search Results for '" .. search_term .. "'"
+
+	qfoptions = {quickfixtextfunc=qf_modifier, items=qflines, title=title}
 	vim.fn.setqflist({}, ' ', qfoptions)
 
 end
