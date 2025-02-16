@@ -8,23 +8,16 @@ function lsp_keymap(info)
 		["gd"] = "<cmd>lua vim.lsp.buf.definition()<CR>",
 		["gr"] = "<cmd>lua vim.lsp.buf.references()<CR>",
 		["gi"] = "<cmd>lua vim.lsp.buf.implementation()<CR>",
-		["li"] = "<cmd>lua vim.lsp.buf.incoming_calls()<CR>",
-		["lo"] = "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>",
 		["cn"] = "<cmd>lua vim.lsp.buf.rename()<CR>",
 		["K"] = "<cmd>lua vim.lsp.buf.hover()<CR>",
+		["lh"] = "<cmd>lua vim.lsp.buf.document_highlight()<CR>",
+		["lu"] = "<cmd>lua vim.lsp.buf.clear_references()<CR>",
+		["ls"] = ":AcsjakubLSPSearchWorkspace ",
 	}
 
 	for key, action in pairs(keymaps) do
-		vim.api.nvim_buf_set_keymap(info.buf, "n", key, action, opts)
+		vim.api.nvim_buf_set_keymap(info.buf, "n", "<Leader>" .. key, action, opts)
 	end
-
-	vim.api.nvim_buf_set_keymap(
-		info.buf,
-		"n",
-		"<Leader>gs",
-		":AcsjakubLSPSearchWorkspace ",
-		opts
-	)
 
 	vim.api.nvim_buf_set_keymap(
 		info.buf,
