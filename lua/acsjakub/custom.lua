@@ -52,30 +52,23 @@ end
 
 vim.api.nvim_create_user_command("AcsjakubTerminal", toggle_terminal_window, {})
 
--- TODO: a better way would be to consume the rg output in json form
--- just use vim.json.decode?
-local function rg_stdout_to_qflines(stdout)
+local function rg_out_to_qflines(stdout)
 	qflines = {}
-	for line in stdout:gmatch("([^\n]*)\n?") do
-		items = {}
+	for line in stdout:gmatch("[^\n]+") do
+		d = vim.json.decode(line)
+		if d.type == "match" then
 
-		-- split line by `:`
-		for item in line:gmatch("([^:]+)") do
-			table.insert(items, item)
+			qfline = {
+				filename=d.data.path.text,
+				lnum=d.data.line_number,
+				col=d.data.submatches[1].start,
+				text=d.data.lines.text,
+			}
+
+			table.insert(qflines, qfline)
 		end
-
-		qfline = {
-			filename=items[1],
-			lnum=items[2],
-			col=items[3],
-			-- merge text in case it contained `:` and got split
-			text=table.concat(items,"", 4),
-		}
-		table.insert(qflines, qfline)
 	end
-
 	return qflines
-
 end
 
 local function qf_modifier(info)
@@ -92,15 +85,14 @@ local function acsjakub_rg(args)
 	search_term = args.args
 	-- TODO can I do this asynchronously? - I cannot call copen and setqflist asyncly
 
-	hnd = vim.system({'rg', search_term, '--vimgrep'}, {text=true}):wait()
+	hnd = vim.system({'rg', search_term, '--json'}, {text=true}):wait()
 
 	if hnd.code ~= 0 then
 		print("No matches found (rg exited non-zero)")
 		return nil
 	end
 
-	qflines = rg_stdout_to_qflines(hnd.stdout)
-	print(vim.inspect(qflines))
+	qflines = rg_out_to_qflines(hnd.stdout)
 
 	-- need to open qf window (setqflist does create new if it doesn't exist,
 	-- but that doesn't mean that window get's opened
